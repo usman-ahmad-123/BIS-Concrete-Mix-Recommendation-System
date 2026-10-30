@@ -1,542 +1,293 @@
-
 # BIS-Oriented Concrete Mix Recommendation & Quality Assessment System
 
-<p align="center">
-  <b>Machine Learning × Civil Engineering × Concrete Technology</b>
-</p>
+\<p align="center">
+&#x20; \<b>Machine Learning | Civil Engineering | Explainable AI\</b>
+\</p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python" />
-  <img src="https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit" />
-  <img src="https://img.shields.io/badge/Model-CatBoost-orange" />
-  <img src="https://img.shields.io/badge/Explainability-SHAP-purple" />
-  <img src="https://img.shields.io/badge/Validation-Group%20Holdout-success" />
-  <img src="https://img.shields.io/badge/Domain-Civil%20Engineering-brown" />
-  <img src="https://img.shields.io/badge/License-MIT-green" />
-</p>
+\<p align="center">
+&#x20; \<img src="[https://img.shields.io/badge/Python-3.10%2B-blue?logo=python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)" />
+&#x20; \<img src="[https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit](https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit)" />
+&#x20; \<img src="[https://img.shields.io/badge/Machine%20Learning-CatBoost-orange](https://img.shields.io/badge/Machine%20Learning-CatBoost-orange)" />
+&#x20; \<img src="[https://img.shields.io/badge/Explainable%20AI-SHAP-purple](https://img.shields.io/badge/Explainable%20AI-SHAP-purple)" />
+&#x20; \<img src="[https://img.shields.io/badge/Validation-Group%20Holdout-success](https://img.shields.io/badge/Validation-Group%20Holdout-success)" />
+&#x20; \<img src="[https://img.shields.io/badge/License-MIT-green](https://img.shields.io/badge/License-MIT-green)" />
+\</p>
 
-<p align="center">
-  <a href="https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System">GitHub Repository</a>
-  |
-  <a href="https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength">Dataset Source</a>
-  |
-  <a href="https://standards.bis.gov.in/">BIS Standards Portal</a>
-</p>
+\<p align="center">
+&#x20; \<a href="[https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)">Repository\</a> ·
+&#x20; \<a href="[https://doi.org/10.24432/C5PK67](https://doi.org/10.24432/C5PK67)">Dataset\</a> ·
+&#x20; \<a href="[https://standards.bis.gov.in/](https://standards.bis.gov.in/)">BIS Standards\</a>
+\</p>
 
 ---
 
 ## Overview
 
-The **BIS-Oriented Concrete Mix Recommendation and Quality Assessment System** is a machine-learning-based engineering decision-support prototype developed to explore the relationship between concrete mixture composition, curing age and compressive strength.
+The **BIS-Oriented Concrete Mix Recommendation & Quality Assessment System** is an experimental machine-learning-based engineering decision-support application designed to explore concrete compressive-strength prediction and historical mix recommendation.
 
-The application combines CatBoost regression, formulation-group-held-out validation, SHAP explainability and an engineering observation module to identify historically tested concrete mixtures that meet a user-specified target mean compressive strength.
+Developed using Python, CatBoost and Streamlit, the system combines predictive modelling, formulation-group-held-out validation and SHAP explainability to identify historically tested concrete mixtures that satisfy a user-defined target mean compressive strength.
 
-Users can specify project requirements, including construction purpose, exposure condition, placement method, testing age and fresh-concrete requirements. The system searches previously observed mixture formulations, evaluates their predicted strength and presents suitable candidate ingredient proportions.
+Beyond strength prediction, the application incorporates engineering-oriented observations for fresh-concrete quality concerns, including bleeding, segregation, plastic shrinkage and workability loss.
 
-The project is designed as a preliminary research and decision-support platform, with relevant Indian Standards serving as engineering references for subsequent material characterization, mix proportioning, laboratory trials and approval.
+The project aims to bridge **Civil Engineering and Artificial Intelligence** through data-driven analysis and explainable engineering decision support.
 
-**Important:** This is not a certified BIS mix-design calculator. Its recommendations are historical candidate mixtures, not independently optimized or approved concrete mix proportions.
-
-## Project Objectives
-
-- Develop a machine-learning model to estimate concrete compressive strength from mixture composition and curing age.
-- Implement formulation-level train-test separation to reduce data leakage from repeated curing-age observations of the same recipe.
-- Generate candidate mixture recommendations for an independently entered target mean strength.
-- Rank feasible candidates using predicted strength surplus and total binder content.
-- Explain model predictions using SHAP.
-- Provide an engineering observation framework for bleeding, segregation, plastic shrinkage, workability loss and durability concerns.
-- Establish a foundation for integrating BIS-based mix proportioning and experimental validation.
+> **Scope:** This is a preliminary research prototype, not a certified BIS mix-design calculator. Candidate mixtures require material characterization, laboratory trials and approval by a qualified engineer.
 
 ## Key Features
 
-| Component | Implementation |
-|---|---|
-| Concrete strength prediction | CatBoost Regression |
-| Dataset processing | Missing-value, non-numeric, non-finite and basic physical-domain validation |
-| Model validation | 80:20 GroupShuffleSplit by ingredient formulation |
-| Performance evaluation | R², RMSE and MAE |
-| Target strength input | Independent user-entered target mean strength |
-| Candidate generation | Historically observed formulations from held-out groups |
-| Candidate selection | Selected historically tested curing ages |
-| Recommendation ranking | Minimum non-negative strength surplus, followed by total binder content |
-| Explainable AI | SHAP local feature contributions |
-| Quality assessment | Engineering observations and laboratory validation checklist |
-| User interface | Streamlit |
-| Model persistence | Separate validation and full-data models |
+- **Concrete Strength Prediction:** CatBoost regression using seven ingredient quantities and curing age.
+- **Machine Learning Benchmarking:** Comparative evaluation of 11 baseline regression models.
+- **Hyperparameter Optimization:** Optuna-based optimization of selected algorithms.
+- **Robust Validation:** 80:20 formulation-group-held-out validation to reduce recipe-level data leakage.
+- **Mix Recommendation:** Screening and ranking of historical formulations against a user-defined target mean strength.
+- **Explainable AI:** SHAP-based interpretation of individual strength predictions.
+- **Engineering Quality Assessment:** Qualitative review of bleeding, segregation, plastic shrinkage, workability retention and durability.
+- **Interactive Application:** Streamlit-based interface for project requirements, candidate mixtures and engineering observations.
 
-## System Architecture
-
-The application follows a structured machine-learning and engineering-assessment workflow.
+## System Workflow
 
 ```mermaid
 flowchart TD
-    A["Concrete Dataset"] --> B["Data Validation and Cleaning"]
-    B --> C["Eight Predictor Features + Target Strength"]
-    C --> D["Formulation-Level Grouping"]
-    D --> E["80:20 Group-Held-Out Split"]
-    E --> F["Train CatBoost Validation Model"]
-    F --> G["Evaluate Held-Out Performance"]
-    E --> H["Held-Out Candidate Formulations"]
-    H --> I["Predict Candidate Strength"]
-    G --> J["Performance Dashboard"]
-    I --> K["Target Strength Filtering"]
-    K --> L["Candidate Ranking"]
-    L --> M["Ingredient Recommendations"]
-    M --> N["SHAP Explanation"]
-    M --> O["Engineering Quality Assessment"]
-    O --> P["BIS and Laboratory Verification"]
+    A[Concrete Compressive Strength Dataset] --> B[Data Cleaning and Preprocessing]
+    B --> C[Feature Engineering and Analysis]
+    C --> D[Model Benchmarking]
+    D --> E[CatBoost Regression]
+    E --> F[Group-Held-Out Validation]
+    F --> G[Strength Prediction]
+    G --> H[Held-Out Candidate Screening]
+    H --> I[Target Strength Filtering]
+    I --> J[Candidate Ranking]
+    J --> K[Ingredient Recommendations]
+    K --> L[SHAP Explainability]
+    K --> M[Engineering Quality Assessment]
+    M --> N[BIS Reference and Laboratory Validation]
 ```
 
-## Dataset and Input Variables
+## Dataset
 
-The project uses the **Concrete Compressive Strength dataset** from the UCI Machine Learning Repository, originally associated with the work of I-Cheng Yeh.
+**Source:** [UCI Machine Learning Repository — Concrete Compressive Strength](https://doi.org/10.24432/C5PK67)
 
-Dataset characteristics:
+The dataset contains 1,030 observations, eight input variables and one target variable.
 
-| Property | Description |
-|---|---|
-| Dataset | Concrete Compressive Strength |
-| Source | UCI Machine Learning Repository |
-| Observations | 1,030 |
-| Input features | 8 |
-| Output target | 1 |
-| Machine-learning task | Regression |
-| Target measurement | MPa |
+| Input feature      | Unit  |
+| ------------------ | ----- |
+| Cement             | kg/m³ |
+| Blast Furnace Slag | kg/m³ |
+| Fly Ash            | kg/m³ |
+| Water              | kg/m³ |
+| Superplasticizer   | kg/m³ |
+| Coarse Aggregate   | kg/m³ |
+| Fine Aggregate     | kg/m³ |
+| Curing Age         | Days  |
 
-### Independent Variables
+**Prediction target:** Concrete Compressive Strength (MPa).
 
-The model uses eight input features.
+Reference: Yeh, I.-C. (1998). *Modeling of strength of high-performance concrete using artificial neural networks*. Cement and Concrete Research, 28(12), 1797–1808.
 
-| No. | Feature | Measurement |
-|---:|---|---|
-| 1 | Cement | kg/m³ |
-| 2 | Blast Furnace Slag | kg/m³ |
-| 3 | Fly Ash | kg/m³ |
-| 4 | Water | kg/m³ |
-| 5 | Superplasticizer | kg/m³ |
-| 6 | Coarse Aggregate | kg/m³ |
-| 7 | Fine Aggregate | kg/m³ |
-| 8 | Curing Age | Days |
+## Machine Learning Methodology
 
-**Dependent Variable:** Concrete Compressive Strength (MPa).
+### Original Benchmarking and Optimization
 
-The compressive-strength column is kept separate from the eight independent variables to prevent target leakage.
+The initial modelling pipeline evaluated 11 regression algorithms using their default configurations. The five selected models were subsequently optimized using Optuna.
 
-**Dataset source:** [UCI Machine Learning Repository — Concrete Compressive Strength](https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength)
+The original experimental workflow included:
 
-**Original research reference:**
+- Exploratory Data Analysis and statistical profiling.
+- Duplicate removal and data preprocessing.
+- Water-cement ratio feature engineering.
+- 80:20 train-test split with random state 2006.
+- Feature standardization for applicable distance-based models.
+- Optuna optimization using 70 trials per selected model.
+- SHAP TreeExplainer for model interpretation.
 
-Yeh, I.-C. (1998). Modeling of strength of high-performance concrete using artificial neural networks. *Cement and Concrete Research*, 28(12), 1797–1808.
+**Original Benchmark results**
 
-## Methodology
+| Model             | Configuration |         R² | RMSE (MPa) | Reported Gap |
+| ----------------- | ------------- | ---------: | ---------: | -----------: |
+| CatBoost          | Baseline      | **0.9324** | **4.0119** |      0.00164 |
+| Gradient Boosting | Tuned         |     0.9295 |     4.0976 |      0.00536 |
+| XGBoost           | Tuned         |     0.9203 |     4.3578 |       0.0169 |
+| LightGBM          | Baseline      |     0.9193 |     4.3853 |      0.00534 |
+| Random Forest     | Tuned         |     0.8988 |     4.9114 |      0.00589 |
 
-### 1. Dataset Processing and Quality Control
+The original CatBoost baseline achieved the highest reported R² among the listed models.
 
-The preprocessing pipeline performs the following operations:
+These results belong to the original benchmarking experiment and should not be interpreted as the performance of the current recommendation application.
 
-- Identifies the eight expected predictor columns and the compressive-strength target.
-- Normalizes column headers to handle whitespace variations.
-- Converts input values into numerical formats.
-- Identifies missing, non-numeric and non-finite observations.
-- Applies basic physical-domain checks, including non-negative ingredient quantities and positive curing age.
-- Removes invalid records instead of introducing fabricated ingredient or strength values.
-- Reports dataset quality and the number of retained and removed observations.
+### Current Application Validation
 
-The model uses the original measurement units rather than treating standardized ingredient quantities as physical mix proportions.
+The recommendation application uses a separate CatBoost training and evaluation workflow.
 
-### 2. Formulation-Group-Held-Out Validation
+To reduce leakage between repeated curing-age observations of the same mixture formulation, it implements `GroupShuffleSplit`:
 
-A major consideration in concrete strength modelling is data leakage caused by repeated mixture formulations tested at different curing ages.
+- **Training:** 80% of formulation groups.
+- **Testing:** 20% of formulation groups.
+- **Grouping:** Seven ingredient quantities, excluding curing age.
+- **Random state:** 42.
 
-A conventional random row split can place observations from the same ingredient formulation in both training and testing datasets.
+The validation model is evaluated on unseen formulations using R², RMSE and MAE. Performance metrics are calculated dynamically rather than hard-coded.
 
-To address this, the application uses:
+A separate CatBoost model is trained on all cleaned observations and saved independently. The full-data model is not used to evaluate the held-out candidate recommendations.
 
-`GroupShuffleSplit`
+### Candidate Recommendation
 
-The seven ingredient quantities define a formulation group. Curing age is excluded from the grouping variables so that observations of the same ingredient formulation at different ages remain in the same partition.
+The user specifies:
 
-**Validation configuration:**
+- Target mean compressive strength.
+- Optional characteristic concrete-grade reference.
+- Curing age selected from historically observed ages.
+- Construction purpose and exposure condition.
+- Placement method and fresh-concrete requirements.
 
-| Parameter | Configuration |
-|---|---|
-| Validation strategy | GroupShuffleSplit |
-| Training proportion | 80% |
-| Testing proportion | 20% |
-| Grouping variables | Seven ingredient quantities |
-| Random state | 42 |
-| Regression algorithm | CatBoost |
-| Iterations | 700 |
-| Maximum tree depth | 6 |
-| Learning rate | 0.05 |
-| Loss function | RMSE |
+The application evaluates held-out historical formulations using the validation model.
 
-### 3. Model Performance Evaluation
-
-The validation model is evaluated only on unseen formulation groups.
-
-Three evaluation metrics are calculated dynamically:
-
-**Coefficient of Determination (R²)**
-
-Measures the proportion of variance in the held-out target values explained by the regression model.
-
-**Root Mean Squared Error (RMSE)**
-
-Measures prediction error while penalizing larger errors more strongly.
-
-**Mean Absolute Error (MAE)**
-
-Measures the average absolute difference between predicted and actual compressive strength.
-
-The application displays the actual evaluation results instead of using previously reported or manually hard-coded performance figures.
-
-No performance value is assumed in advance.
-
-*Note: These results represent one reproducible group-held-out split, not repeated group cross-validation or independent external validation.*
-
-### 4. Candidate Mix Generation
-
-Candidate formulations are selected from the held-out dataset groups.
-
-The validation model predicts compressive strength for these previously unseen formulations at historically observed curing ages.
-
-This is important because the candidate mixtures are not used to train the model that evaluates them.
-
-The application does not randomly fabricate new ingredient quantities or assume that arbitrary ingredient combinations will produce valid concrete.
-
-### 5. Target Mean Strength and Recommendation
-
-The user independently specifies the target mean compressive strength in MPa.
-
-An optional concrete-grade reference is provided separately. The application does not automatically calculate target mean strength from the selected grade.
-
-Candidate mixtures are filtered using:
-
-`Predicted Strength ≥ User-Entered Target Mean Strength`
-
-The feasible candidates are ranked using:
+Candidates satisfying the entered strength threshold are ranked by:
 
 1. Lowest non-negative predicted strength surplus.
 2. Lower total binder content as a tie-breaker.
 
-Total binder content is calculated as:
+The selected candidate is presented with ingredient quantities in kg/m³, predicted strength and water-to-binder ratio.
 
-`Cement + Blast Furnace Slag + Fly Ash`
-
-This ranking is a preliminary candidate-selection heuristic. It is not a globally optimal mix-design algorithm or least-cost optimization procedure.
-
-### 6. Explainable Artificial Intelligence
-
-SHAP (SHapley Additive exPlanations) is integrated to explain the selected candidate's predicted compressive strength.
-
-The local feature-contribution plot identifies how individual input features influence the prediction relative to the model's expected output.
-
-It helps interpret the contribution of:
-
-- Cement
-- Blast Furnace Slag
-- Fly Ash
-- Water
-- Superplasticizer
-- Coarse Aggregate
-- Fine Aggregate
-- Curing Age
-
-SHAP explains model behaviour; it does not establish causal relationships or predict concrete defects.
+This is historical candidate screening, not global ingredient optimization or least-cost mix design.
 
 ## Engineering Quality Assessment
 
-Concrete performance depends on more than compressive strength.
+The application provides a qualitative engineering observation module for important concrete quality concerns.
 
-The application provides a separate engineering observation module covering important fresh-concrete and construction concerns.
+| Concern           | Engineering considerations                               |
+| ----------------- | -------------------------------------------------------- |
+| Bleeding          | Water content, paste volume, fines and aggregate grading |
+| Segregation       | Aggregate grading, cohesion, consistency and placement   |
+| Plastic Shrinkage | Temperature, humidity, wind and curing conditions        |
+| Workability Loss  | Slump retention and admixture compatibility              |
+| Durability        | Exposure conditions, material properties and curing      |
 
-| Engineering concern | Required assessment |
-|---|---|
-| Bleeding | Water content, paste volume, fines, grading and bleeding trials |
-| Segregation | Aggregate grading, cohesion, consistency and placement trials |
-| Plastic shrinkage | Temperature, humidity, wind, evaporation conditions and curing |
-| Workability loss | Slump retention, transport duration and admixture compatibility |
-| Durability | Exposure conditions, material properties, binder system and curing |
+Weather and placement information is collected for engineering review; it is not used as CatBoost input or converted into defect probabilities.
 
-### Site and Construction Inputs
+The source dataset contains no experimentally labelled defect outcomes. Consequently, the application does not claim to predict or eliminate bleeding, segregation, shrinkage or workability loss.
 
-The interface records additional project conditions:
+## BIS Engineering References
 
-- Construction purpose.
-- Exposure condition.
-- Placement method.
-- Required slump.
-- Nominal maximum aggregate size.
-- Transport and placement duration.
-- Ambient temperature.
-- Relative humidity.
-- Wind speed.
+The project uses the following Indian Standards as engineering references:
 
-These are contextual engineering inputs. They are not predictors in the trained CatBoost model and do not generate defect probabilities.
-
-**Engineering limitation:** The source dataset contains no experimentally labelled bleeding, segregation, plastic-shrinkage or workability-retention measurements. Consequently, these concerns are addressed through qualitative engineering observations and laboratory-validation requirements, not fabricated machine-learning classifications.
-
-## BIS Standards and Engineering References
-
-The application identifies relevant Indian Standards as a starting point for project-specific engineering verification.
-
-| Standard | Relevant subject |
-|---|---|
-| IS 10262:2019 | Concrete mix proportioning — guidelines |
-| IS 456:2000 | Plain and reinforced concrete — code of practice |
-| IS 383:2016 | Coarse and fine aggregate for concrete |
-| IS 9103:1999 | Concrete admixtures |
-| IS 1199 (Part 2):2018 | Fresh concrete consistency testing |
-| IS 1199 (Part 5):2018 | Making and curing test specimens |
+| Standard                   | Subject                            |
+| -------------------------- | ---------------------------------- |
+| IS 10262:2019              | Concrete mix proportioning         |
+| IS 456:2000                | Plain and reinforced concrete      |
+| IS 383:2016                | Coarse and fine aggregates         |
+| IS 9103:1999               | Concrete admixtures                |
+| IS 1199 (Part 2):2018      | Fresh concrete consistency         |
+| IS 1199 (Part 5):2018      | Making and curing test specimens   |
 | IS 516 (Part 1/Sec 1):2021 | Hardened concrete strength testing |
 
-Always consult the BIS catalogue for the current applicable editions, amendments, revisions and project requirements before using any standard in engineering practice.
+**Additional information required for complete mix design:** Cement properties, aggregate grading, specific gravity, moisture content, water absorption, admixture characteristics, standard deviation, exposure classification and other project-specific design inputs.
 
-Useful references:
-
-- [BIS Standards Portal](https://standards.bis.gov.in/)
-- [BIS — Know Your Standard](https://www.bis.gov.in/Know-Your-Standard/?lang=en)
-
-### Information Required for a Complete Mix Design
-
-The current dataset does not provide every input needed for a full BIS-based mix design.
-
-Additional material and project information includes:
-
-| Category | Required information |
-|---|---|
-| Cement | Type, grade, specific gravity and source |
-| Fine aggregate | Grading zone, sieve analysis, specific gravity, absorption and moisture |
-| Coarse aggregate | Grading, nominal size, specific gravity, absorption and moisture |
-| Water | Quality and suitability |
-| Fly ash and slag | Source, specific gravity, fineness and relevant conformity data |
-| Chemical admixtures | Type, manufacturer dosage range and compatibility |
-| Mix design | Standard deviation, exposure class, durability limits and water/binder requirements |
-| Fresh concrete | Slump, density, air content, bleeding and segregation observations |
-| Hardened concrete | Strength results and required durability tests |
-
-The present application does not implement the complete IS 10262 absolute-volume proportioning calculation, aggregate moisture corrections, or automatic code-compliance verification.
-
-## Model Storage and Reproducibility
-
-The application saves the models and validation metadata separately.
-
-```text
-models/
-└── tuned/
-    ├── CatBoost_BIS_validation_group_holdout.pkl
-    ├── CatBoost_BIS_full_data.pkl
-    └── CatBoost_BIS_model_metadata.json
-```
-
-| Artifact | Purpose |
-|---|---|
-| Validation model | Trained only on the 80% training formulation groups; used for held-out performance evaluation and candidate scoring |
-| Full-data model | Trained on all cleaned records and saved separately for subsequent deployment |
-| Model metadata | Stores validation metrics, training/testing sizes and split information |
-
-The original model file is not overwritten.
-
-The validation model is retained separately to preserve the distinction between unseen-formulation evaluation and a model trained on the complete dataset.
+The current application does not implement complete IS 10262 absolute-volume calculations, aggregate moisture corrections or automated BIS compliance verification. Applicable editions and amendments should be checked through the official [BIS Standards Portal](https://standards.bis.gov.in/).
 
 ## Technology Stack
 
-| Area | Tools |
-|---|---|
-| Programming language | Python |
-| Data manipulation | Pandas, NumPy |
-| Machine learning | CatBoost |
-| Model evaluation | Scikit-learn |
-| Explainable AI | SHAP |
-| Data visualization | Matplotlib |
-| Interactive application | Streamlit |
-| Model serialization | Joblib |
-| Dataset formats | CSV, Excel |
+| Category           | Technologies           |
+| ------------------ | ---------------------- |
+| Programming        | Python                 |
+| Data Analysis      | Pandas, NumPy          |
+| Machine Learning   | Scikit-learn, CatBoost |
+| Model Optimization | Optuna                 |
+| Explainable AI     | SHAP                   |
+| Visualization      | Matplotlib             |
+| Application        | Streamlit              |
+| Model Persistence  | Joblib                 |
 
-## Project Structure
+## Repository Structure
 
 ```text
 BIS-Concrete-Mix-Recommendation-System/
 │
 ├── app.py
-│
 ├── requirements.txt
-│
 ├── README.md
-│
 ├── LICENSE
-│
 ├── .gitignore
 │
 ├── Codes/
 │   ├── EDA.ipynb
-│   ├── Modelling.ipynb
-│   └── Preprocessing.ipynb
+│   ├── Preprocessing.ipynb
+│   └── Modelling.ipynb
 │
 ├── Datasets/
-│   ├── processed_datasets/
-│   └── Raw_data/
-│       └── Concrete_Data.csv
+│   └── processed_datasets/
 │
 └── models/
+    ├── baseline/
     └── tuned/
-        ├── CatBoost_BIS_validation_group_holdout.pkl
-        ├── CatBoost_BIS_full_data.pkl
-        └── CatBoost_BIS_model_metadata.json
 ```
 
-The generated model files are created when the application runs. The dataset directory shown above is an expected location; the application also supports several alternative dataset paths.
+The application supports the dataset in `Datasets/Concrete_Data.csv`, `Datasets/Raw_data/Concrete_Data.csv`, `Raw_data/Concrete_Data.csv` and other configured locations.
 
-## Installation and Setup
+Generated model artifacts are stored separately:
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System.git
+```text
+models/tuned/
+├── CatBoost_BIS_validation_group_holdout.pkl
+├── CatBoost_BIS_full_data.pkl
+└── CatBoost_BIS_model_metadata.json
 ```
 
-### 2. Navigate to the project directory
+## Installation and Usage
+
+**Prerequisite:** Python 3.10 or later and the project dataset.
+
+Install dependencies:
 
 ```bash
-cd BIS-Concrete-Mix-Recommendation-System
-```
-
-### 3. Create a virtual environment
-
-**Windows:**
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-**Linux / macOS:**
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 4. Install dependencies
-
-```bash
-python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 5. Verify package compatibility
-
-```bash
-python -m pip check
-```
-
-### 6. Prepare the dataset
-
-Place `Concrete_Data.csv` in one of the supported locations:
-
-```text
-Raw_data/Concrete_Data.csv
-Datasets/Raw_data/Concrete_Data.csv
-Datasets/Concrete_Data.csv
-Concrete_Data.csv
-```
-
-The application also supports `Raw_data/Concrete_Data.xlsx`.
-
-The dataset should retain its original feature headers and the compressive-strength target column.
-
-### 7. Run the Streamlit application
+Run the application:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-Open the local Streamlit URL displayed in your terminal.
+The application automatically cleans the dataset, trains and evaluates the models, and generates candidate recommendations.
 
-On the first run, the application processes the dataset, trains and evaluates CatBoost models, and saves the resulting artifacts.
+## Research Report and References
 
-## Limitations and Scope
+**Dataset:** [UCI Concrete Compressive Strength](https://doi.org/10.24432/C5PK67)
 
-This project is an experimental academic and engineering decision-support prototype.
+**Technical documentation:**
 
-Its current capabilities should be distinguished from a complete engineering mix-design system.
+- [CatBoost](https://catboost.ai/docs/)
+- [Optuna](https://optuna.org/)
+- [SHAP](https://shap.readthedocs.io/)
+- [Streamlit](https://docs.streamlit.io/)
+- [Scikit-learn](https://scikit-learn.org/stable/)
 
-| Capability | Current status |
-|---|---|
-| Compressive-strength regression | Implemented |
-| Formulation-group-held-out validation | Implemented |
-| Historical candidate recommendation | Implemented |
-| Independent target mean strength input | Implemented |
-| Strength-based candidate ranking | Implemented |
-| SHAP explanation | Implemented |
-| Fresh-concrete engineering observation module | Implemented as qualitative checks |
-| Actual defect prediction | Not implemented |
-| Global mixture optimization | Not implemented |
-| Least-cost mix optimization | Not implemented |
-| IS 10262 absolute-volume calculations | Not implemented |
-| Aggregate moisture corrections | Not implemented |
-| Automated BIS compliance certification | Not implemented |
-| Laboratory verification | Required |
+**BIS:** [Official Standards Portal](https://standards.bis.gov.in/)
 
-The dataset is limited to its historical concrete formulations and measured compressive strength observations. Its predictions should not be extrapolated beyond the supported data domain without additional validation.
+## Limitations
 
-A predicted strength above the requested threshold does not establish the workability, durability, stability, safety or code compliance of a concrete mixture.
+The current implementation is an experimental decision-support prototype. It predicts compressive strength and screens historical candidate formulations; it does not independently design or certify a concrete mixture.
 
-**All candidate proportions must undergo appropriate material characterization, engineering review and laboratory trial batches before practical use.**
+Final approval requires:
 
-## Future Development Roadmap
-
-The following enhancements are potential research and development directions:
-
-- [ ] Implement complete IS 10262 mix-proportioning calculations.
-- [ ] Integrate IS 456 exposure-class and durability constraints.
-- [ ] Add aggregate sieve analysis and grading-based inputs.
-- [ ] Incorporate specific gravity, absorption and moisture corrections.
-- [ ] Add material-specific cement, fly-ash and slag properties.
-- [ ] Integrate chemical admixture dosage and compatibility data.
-- [ ] Develop constrained mix optimization with material-cost inputs.
-- [ ] Collect laboratory data for bleeding and segregation assessment.
-- [ ] Develop validated workability and slump-retention models.
-- [ ] Integrate evaporation and plastic-shrinkage risk assessment.
-- [ ] Implement uncertainty estimation and repeated group cross-validation.
-- [ ] Validate recommendations using independent experimental mixtures.
+- Material characterization and aggregate grading.
+- BIS-based mix proportioning and durability verification.
+- Trial-batch workability, bleeding and segregation tests.
+- Appropriate curing and compressive-strength testing.
+- Review and approval by a qualified engineer.
 
 ## Author
 
 **Md Usman Ahmad**
-
-B.Tech — Civil and Environmental Engineering  
+B.Tech, Civil and Environmental Engineering
 Indian Institute of Technology Patna
 
-**Technical Interests:** Machine Learning, Data Science, Civil Engineering Analytics, Artificial Intelligence and Engineering Decision Support.
+**Areas of Interest:** Machine Learning, Data Science, Civil Engineering Analytics and AI-driven Engineering Systems.
 
-- GitHub: [@usman-ahmad-123](https://github.com/usman-ahmad-123)
-- Project Repository: [BIS Concrete Mix Recommendation System](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)
-
-## References
-
-1. Yeh, I.-C. (1998). *Modeling of strength of high-performance concrete using artificial neural networks*. Cement and Concrete Research, 28(12), 1797–1808.
-2. [UCI Machine Learning Repository — Concrete Compressive Strength](https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength).
-3. [Bureau of Indian Standards — Official Standards Portal](https://standards.bis.gov.in/).
-4. [BIS — Know Your Standard](https://www.bis.gov.in/Know-Your-Standard/?lang=en).
-5. [CatBoost Documentation](https://catboost.ai/docs/).
-6. [SHAP Documentation](https://shap.readthedocs.io/).
-7. [Streamlit Documentation](https://docs.streamlit.io/).
-8. [Scikit-learn Documentation](https://scikit-learn.org/stable/).
-
-## License
-
-This project is released under the MIT License, as indicated by the repository's LICENSE file.
-
-The dataset and third-party materials remain subject to their respective original terms and attribution requirements.
+[Project Repository](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)
 
 ---
 
-<p align="center">
-  <b>Advancing Concrete Engineering Through Data-Driven Decision Support.</b>
-</p>
-
-<p align="center">
-  <sub>Built with Python, Machine Learning and Civil Engineering principles.</sub>
-</p>
+\<p align="center">
+&#x20; \<b>Advancing Concrete Engineering Through Data-Driven Decision Support.\</b>
+\</p>
