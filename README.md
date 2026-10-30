@@ -1,23 +1,26 @@
+
 # BIS-Oriented Concrete Mix Recommendation & Quality Assessment System
 
-\<p align="center">
-&#x20; \<b>Machine Learning | Civil Engineering | Explainable AI\</b>
-\</p>
+<p align="center">
+  <strong>Machine Learning | Civil Engineering | Explainable AI</strong>
+</p>
 
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/Python-3.10%2B-blue?logo=python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)" />
-&#x20; \<img src="[https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit](https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit)" />
-&#x20; \<img src="[https://img.shields.io/badge/Machine%20Learning-CatBoost-orange](https://img.shields.io/badge/Machine%20Learning-CatBoost-orange)" />
-&#x20; \<img src="[https://img.shields.io/badge/Explainable%20AI-SHAP-purple](https://img.shields.io/badge/Explainable%20AI-SHAP-purple)" />
-&#x20; \<img src="[https://img.shields.io/badge/Validation-Group%20Holdout-success](https://img.shields.io/badge/Validation-Group%20Holdout-success)" />
-&#x20; \<img src="[https://img.shields.io/badge/License-MIT-green](https://img.shields.io/badge/License-MIT-green)" />
-\</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python" alt="Python" />
+  <img src="https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit" alt="Streamlit" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-CatBoost-orange" alt="CatBoost" />
+  <img src="https://img.shields.io/badge/Explainable%20AI-SHAP-purple" alt="SHAP" />
+  <img src="https://img.shields.io/badge/Validation-Group%20Holdout-success" alt="Group Holdout Validation" />
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
+</p>
 
-\<p align="center">
-&#x20; \<a href="[https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)">Repository\</a> ·
-&#x20; \<a href="[https://doi.org/10.24432/C5PK67](https://doi.org/10.24432/C5PK67)">Dataset\</a> ·
-&#x20; \<a href="[https://standards.bis.gov.in/](https://standards.bis.gov.in/)">BIS Standards\</a>
-\</p>
+<p align="center">
+  <a href="https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System">Repository</a>
+  &nbsp;·&nbsp;
+  <a href="https://doi.org/10.24432/C5PK67">Dataset</a>
+  &nbsp;·&nbsp;
+  <a href="https://standards.bis.gov.in/">BIS Standards</a>
+</p>
 
 ---
 
