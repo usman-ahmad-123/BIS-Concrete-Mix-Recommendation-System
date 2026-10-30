@@ -284,7 +284,7 @@ Indian Institute of Technology Patna
 
 **Areas of Interest:** Machine Learning, Data Science, Civil Engineering Analytics and AI-driven Engineering Systems.
 
-[Project Repository](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)
+[GitHub Profile](https://github.com/usman-ahmad-123) · [Project Repository](https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System)
 
 ---
 
