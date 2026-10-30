@@ -1,0 +1,12 @@
+{
+  "r2": 0.9220060346814587,
+  "rmse": 4.511866567844603,
+  "mae": 3.2582256402319962,
+  "train_rows": 835,
+  "test_rows": 195,
+  "train_formulations": 342,
+  "test_formulations": 86,
+  "total_formulations": 428,
+  "split": "GroupShuffleSplit 80:20 by seven-ingredient formulation",
+  "random_state": 42
+}
