@@ -17,7 +17,7 @@
 <p align="center">
   <a href="https://github.com/usman-ahmad-123/BIS-Concrete-Mix-Recommendation-System">Repository</a>
   &nbsp;·&nbsp;
-  <a href="https://doi.org/10.24432/C5PK67">Dataset</a>
+  <a href="https://bis-concrete-mix-recommendation-system.onrender.com">Dashboard</a>
   &nbsp;·&nbsp;
   <a href="https://standards.bis.gov.in/">BIS Standards</a>
 </p>
