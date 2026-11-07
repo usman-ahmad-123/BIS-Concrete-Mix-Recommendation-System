@@ -7,7 +7,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python" alt="Python" />
-  <img src="https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit" alt="Streamlit" />
+  <img src="https://bis-concrete-mix-recommendation-system.onrender.com" alt="Streamlit" />
   <img src="https://img.shields.io/badge/Machine%20Learning-CatBoost-orange" alt="CatBoost" />
   <img src="https://img.shields.io/badge/Explainable%20AI-SHAP-purple" alt="SHAP" />
   <img src="https://img.shields.io/badge/Validation-Group%20Holdout-success" alt="Group Holdout Validation" />
